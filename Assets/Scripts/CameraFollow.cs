@@ -13,7 +13,7 @@ public class CameraFollow : MonoBehaviour
             transform.position.y - RabitTransform.position.y);
     }
 
-    void LateUpdate()
+    void Update()
     {
         transform.position = new Vector3(
             RabitTransform.position.x - _offset.x, 
