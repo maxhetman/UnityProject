@@ -8,6 +8,7 @@ public class RabbitController : MonoBehaviour
     public float Speed = 2.0f;
     public float MaxJumpTime = 2f;
     public float JumpSpeed = 2f;
+    public float BiggerSize = 1.4f;
 
     private Rigidbody2D _rigidBody;
     private SpriteRenderer _spriteRenderer;
@@ -16,6 +17,8 @@ public class RabbitController : MonoBehaviour
     private bool _jumpActive = false;
     private float _jumpTime = 0f;
 
+    private bool _isDead = false;
+    private bool isBig = false;
 
 
     // Use this for initialization
@@ -28,6 +31,12 @@ public class RabbitController : MonoBehaviour
 
     void FixedUpdate()
     {
+
+        if (_isDead)
+        {
+            return;
+        }
+
         float xSpeed = Input.GetAxis("Horizontal");
 
         if (Mathf.Abs(xSpeed) > 0)
@@ -62,6 +71,18 @@ public class RabbitController : MonoBehaviour
         RaycastHit2D hit = Physics2D.Linecast(from, to, layer_id);
         if (hit)
         {
+
+            Debug.Log("before");
+            Debug.Log(hit.transform.name + " is");
+            if (hit.transform.GetComponent<MovingPlatform>() != null)
+            {
+                Debug.Log("HERE");
+                transform.SetParent(hit.transform);
+            }
+            else
+            {
+                transform.SetParent(null);   
+            }
             _isGrounded = true;
         }
         else
@@ -102,6 +123,46 @@ public class RabbitController : MonoBehaviour
         else
         {
             _animator.SetBool("Jump", true);
+        }
+    }
+
+    public void RabbitShorten()
+    {
+        if (isBig)
+        {
+            transform.localScale = new Vector3(1f, 1f, 0f);
+            isBig = false;
+        }
+        else
+        {
+            Die();
+            StartCoroutine(Respawn());
+        }
+    }
+
+    private IEnumerator Respawn()
+    {
+        yield return new WaitForSeconds(1.5f);
+        LevelController.Instance.OnRabitDeath(this);
+        _isDead = false;
+        _animator.SetBool("Die", false);
+    }
+    private void Die()
+    {
+        _animator.SetBool("Die", true);
+        _isDead = true;
+    }   
+
+    public void RabbitGrow()
+    {
+        if (isBig)
+        {
+            return;
+        }
+        else
+        {
+            transform.localScale = new Vector3(BiggerSize, BiggerSize, 0);
+            isBig = true;
         }
     }
 }
