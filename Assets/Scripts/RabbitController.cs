@@ -5,6 +5,8 @@ using UnityEngine;
 public class RabbitController : MonoBehaviour
 {
 
+    #region Variables
+    public static RabbitController Instance;
     public float Speed = 2.0f;
     public float MaxJumpTime = 2f;
     public float JumpSpeed = 2f;
@@ -19,8 +21,13 @@ public class RabbitController : MonoBehaviour
 
     private bool _isDead = false;
     private bool isBig = false;
+    #endregion
 
-
+    #region Unity
+    void Awake()
+    {
+        Instance = this;
+    }
     // Use this for initialization
     void Start()
     {
@@ -126,8 +133,10 @@ public class RabbitController : MonoBehaviour
         }
     }
 
-    public void RabbitShorten()
-    {
+    #endregion
+
+        public void OnBomb()
+        {
         if (isBig)
         {
             transform.localScale = new Vector3(1f, 1f, 0f);
@@ -136,7 +145,6 @@ public class RabbitController : MonoBehaviour
         else
         {
             Die();
-            StartCoroutine(Respawn());
         }
     }
 
@@ -147,11 +155,14 @@ public class RabbitController : MonoBehaviour
         _isDead = false;
         _animator.SetBool("Die", false);
     }
-    private void Die()
+    public void Die()
     {
+        if (_isDead)
+            return;
         _animator.SetBool("Die", true);
         _isDead = true;
-    }   
+        StartCoroutine(Respawn());
+    }
 
     public void RabbitGrow()
     {

@@ -6,7 +6,7 @@ public class Bomb : Collectable {
 
     protected override void OnRabitHit(RabbitController rabit)
     {
-        rabit.RabbitShorten();
+        rabit.OnBomb();
         CollectedHide();
     }
 }
