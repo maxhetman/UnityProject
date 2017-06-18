@@ -6,7 +6,7 @@ public class Fruit : Collectable {
 
     protected override void OnRabitHit(RabbitController rabit)
     {
-        //do something
+        LevelController.Instance.CollectFruit();
         CollectedHide();
     }
 }

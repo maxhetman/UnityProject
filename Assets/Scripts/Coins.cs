@@ -6,7 +6,7 @@ public class Coins : Collectable {
 
     protected override void OnRabitHit(RabbitController rabit)
     {
-        //Level.current.addCoins(1);
+        LevelController.Instance.AddCoins(1);
         CollectedHide();
     }
 }

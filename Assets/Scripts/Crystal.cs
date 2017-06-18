@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Crystal : Collectable {
+public class Crystal : Collectable
+{
+
+    public CrystalsUIController.CrystalType CrystalKind;
 
     protected override void OnRabitHit(RabbitController rabit)
     {
-        //do something
+        LevelController.Instance.PickCrystal(CrystalKind);
         CollectedHide();
     }
+
 }

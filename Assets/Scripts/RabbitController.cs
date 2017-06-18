@@ -18,16 +18,22 @@ public class RabbitController : MonoBehaviour
     private bool _isGrounded = false;
     private bool _jumpActive = false;
     private float _jumpTime = 0f;
-
     private bool _isDead = false;
     private bool isBig = false;
+
+    public const int MAX_HEALTH = 3;
+
+    [HideInInspector] public int CurrentHealth;
+
     #endregion
 
     #region Unity
     void Awake()
     {
         Instance = this;
+        CurrentHealth = MAX_HEALTH;
     }
+
     // Use this for initialization
     void Start()
     {
