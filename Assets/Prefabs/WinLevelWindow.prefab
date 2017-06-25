@@ -50,13 +50,14 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4151187144083830}
+  - component: {fileID: 114061959305912052}
   m_Layer: 5
   m_Name: WinLevelWindow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1247034823524186
 GameObject:
   m_ObjectHideFlags: 1
@@ -353,7 +354,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4125302579021002}
   m_Layer: 5
-  m_Name: FruitPanel (1)
+  m_Name: CoinsPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -753,6 +754,25 @@ MonoBehaviour:
   mFixedAspect: 0
   mPixelSize: 1
   nextSprite: {fileID: 0}
+--- !u!114 &114061959305912052
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1215623589199164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a15aeb72e6784f8489a0224492e11af7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CoinsLabel: {fileID: 114699903144648968}
+  FruitLabel: {fileID: 114793106250180436}
+  BlueCrystalPlaceholder: {fileID: 114060302326658314}
+  RedCrystalPlaceHolder: {fileID: 114624048638215412}
+  GreenCrystalPlaceholder: {fileID: 114929741312464830}
+  BlueCrystalSprite: {fileID: 21300000, guid: 3cb1b99d25dc94b7a9197f9696940e7d, type: 3}
+  RedCrystalSprite: {fileID: 21300000, guid: 25e34c6172d294f49b2036adce060f37, type: 3}
+  GreenCrystalSprite: {fileID: 21300000, guid: 1d59749b388494924bedae3370db5fe0, type: 3}
 --- !u!114 &114070313633243962
 MonoBehaviour:
   m_ObjectHideFlags: 1

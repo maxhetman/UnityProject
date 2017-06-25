@@ -4,6 +4,5 @@ using UnityEngine;
 
 public interface IMusicToggler
 {
-
     void SetMusic(bool state);
 }

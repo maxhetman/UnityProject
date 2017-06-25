@@ -8,6 +8,7 @@ public class BrownOrcController : AbstractOrcController
     [SerializeField] private GameObject _carrotPrefab;
     [SerializeField] private Transform _launchPoint;
     [SerializeField] private float _shootDelay;
+    [SerializeField] private AudioSource AttackAudio;
 
     private float _shootTimeLeft;
     void Update()
@@ -18,7 +19,7 @@ public class BrownOrcController : AbstractOrcController
             Debug.Log("Is attacking" + _isAttacking);
             _animator.SetBool("Run", false);
             _animator.SetBool("Walk", false);
-
+            
             float rabbitDirection = GetRabbitDirection();
 
             _shootTimeLeft -= Time.deltaTime;
@@ -59,6 +60,10 @@ public class BrownOrcController : AbstractOrcController
     {
         _animator.SetBool("Attack", true);
         _shootTimeLeft = _shootDelay;
+        if (SoundManager.isSoundOn())
+        {
+            AttackAudio.Play();
+        }
         yield return new WaitForSeconds(0.8f);
         _animator.SetBool("Attack", false);
     }

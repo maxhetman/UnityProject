@@ -1,41 +1,39 @@
 ﻿using UnityEngine;
 
-public class SoundManager
+public static class SoundManager
 {
-    bool is_sound_on = true;
+    static bool is_sound_on = true;
 
-    private bool is_music_on = true;
+    static bool is_music_on = true;
 
-    public bool isSoundOn()
+    public static bool isSoundOn()
     {
-        return this.is_sound_on;
+        return is_sound_on;
     }
 
-    public bool isMusicOn()
+    public static bool isMusicOn()
     {
-        return this.is_music_on;
+        return is_music_on;
     }
 
-    public void setSoundOn(bool val)
+    public static void setSoundOn(bool val)
     {
-        this.is_sound_on = val;
-        PlayerPrefs.SetInt("sound", this.is_sound_on ? 1 : 0);
+        is_sound_on = val;
+        PlayerPrefs.SetInt("sound", is_sound_on ? 1 : 0);
         PlayerPrefs.Save();
     }
 
-    public void setMusicOn(bool val)
+    public static void setMusicOn(bool val)
     {
-        Debug.Log("HERE BRO");
-        this.is_music_on = val;
-        PlayerPrefs.SetInt("music", this.is_music_on ? 1 : 0);
+
+        is_music_on = val;
+        PlayerPrefs.SetInt("music", is_music_on ? 1 : 0);
         PlayerPrefs.Save();
     }
 
-    public SoundManager()
+    static SoundManager()
     {
         is_sound_on = PlayerPrefs.GetInt("sound", 1) == 1;
-        is_sound_on = PlayerPrefs.GetInt("music", 1) == 1;
+        is_music_on = PlayerPrefs.GetInt("music", 1) == 1;
     }
-
-    public static SoundManager Instance = new SoundManager();
 }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(UIButton))]
 public class MusicToggle : MonoBehaviour
 {
 
@@ -10,23 +11,36 @@ public class MusicToggle : MonoBehaviour
 
     public GameObject MusicToggler;
 
+    private UIButton _button;
+
+    [SerializeField]
+    private Sprite _musicOnSprite;
+    [SerializeField]
+    private Sprite _musicOffSprite;
+
+
     void Awake()
     {
-        Debug.Log("HERE");
         Instance = this;
+        _button = GetComponent<UIButton>();
+        _button.normalSprite2D = SoundManager.isMusicOn() ? _musicOnSprite : _musicOffSprite;
+
     }
 
     public void SwitchMusic()
     {
-        if (SoundManager.Instance.isMusicOn())
+        if (SoundManager.isMusicOn())
         {
-            SoundManager.Instance.setMusicOn(false);
+            SoundManager.setMusicOn(false);
             ToggleMusic(false);
+            _button.normalSprite2D = _musicOffSprite;
+            Debug.Log("TURN THIS SHIT OFF");
         }
         else
         {
-            SoundManager.Instance.setMusicOn(true);
+            SoundManager.setMusicOn(true);
             ToggleMusic(true);
+           _button.normalSprite2D = _musicOnSprite;
         }
     }
 
@@ -35,7 +49,6 @@ public class MusicToggle : MonoBehaviour
         IMusicToggler toggler = MusicToggler.GetComponent<IMusicToggler>();
         if (toggler != null)
         {
-            Debug.Log("HERE");
             toggler.SetMusic(state);
         }
     }

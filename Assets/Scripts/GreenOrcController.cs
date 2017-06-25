@@ -6,6 +6,7 @@ using UnityEngine;
 public class GreenOrcController : AbstractOrcController
 {
     [SerializeField] private GreenOrcAttackTrigger _attackRadius;
+    [SerializeField] private AudioSource AttackAudio;
 
     public override void AttackRabbit()
     {
@@ -17,6 +18,10 @@ public class GreenOrcController : AbstractOrcController
     {
         _isAttacking = true;
         _animator.SetBool("Attack", true);
+        if (SoundManager.isSoundOn())
+        {
+            AttackAudio.Play();
+        }
         yield return new WaitForSeconds(.2f);
         if (_attackRadius.RabbitClose)
         {

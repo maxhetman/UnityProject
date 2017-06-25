@@ -11,7 +11,7 @@ public class OrcDeathTrigger : MonoBehaviour
     {
         if (collider.GetComponent<RabbitController>() != null)
         {
-            if (collider.transform.position.y > transform.position.y + 1.6f)
+            if (collider.transform.position.y > transform.position.y + 1.7f)
             {
                 _orcScript.Die();
             }

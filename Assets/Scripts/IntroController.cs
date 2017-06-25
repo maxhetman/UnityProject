@@ -13,9 +13,9 @@ public class IntroController : MonoBehaviour, IMusicToggler
         SceneManager.LoadScene("ChooseLevelScene");
     }
 
-    void OnEnable()
+    void Start()
     {
-        if (SoundManager.Instance.isMusicOn())
+        if (SoundManager.isMusicOn())
         {
             SetMusic(true);
         }

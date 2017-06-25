@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 50224606652251596}
   - component: {fileID: 114275540258805536}
   - component: {fileID: 61855789876292444}
+  - component: {fileID: 82422946361381716}
   m_Layer: 0
   m_Name: BrownOrc
   m_TagString: Untagged
@@ -83,7 +84,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1260742134525242}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.1206417, y: -0.48, z: 0}
+  m_LocalPosition: {x: 4, y: 1.03, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4816467208082274}
@@ -174,6 +175,86 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.27, y: 1.13}
   m_EdgeRadius: 0
+--- !u!82 &82422946361381716
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1260742134525242}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: ece9b14a232f14f48ab9a5e844cb5daf, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!95 &95748590640477408
 Animator:
   serializedVersion: 3
@@ -202,13 +283,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93242af66efdbbd489d1983d53dca517, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _offsetX: 5
-  _patrolSpeed: 2
-  _runSpeed: 3
-  _carrotPrefab: {fileID: 1052644457413976, guid: ede033c4a1140e545be1604d0b7c11d1,
-    type: 2}
-  _launchPoint: {fileID: 4816467208082274}
-  _shootDelay: 2
+  _offsetX: 0
+  _patrolSpeed: 0
+  _runSpeed: 0
+  _carrotPrefab: {fileID: 0}
+  _launchPoint: {fileID: 0}
+  _shootDelay: 0
+  AttackAudio: {fileID: 0}
 --- !u!114 &114856169213727450
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -220,7 +301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aff4db385ee42c4cbefb706a1a3822a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _orcScript: {fileID: 114275540258805536}
+  _orcScript: {fileID: 0}
 --- !u!212 &212955183922064236
 SpriteRenderer:
   m_ObjectHideFlags: 1

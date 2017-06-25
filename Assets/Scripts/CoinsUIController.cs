@@ -11,7 +11,6 @@ public class CoinsUIController : MonoBehaviour
     {
         LevelController.Instance.OnCoinsAmountChanged += OnCoinsAmountChanged;
         CoinsLabel.text = "0000";
-
     }
 
     private void OnCoinsAmountChanged(int coinsAmount)

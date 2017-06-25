@@ -12,6 +12,8 @@ public class LevelEnterTrigger : MonoBehaviour
     {
         if (col.GetComponent<RabbitController>() != null)
         {
+            if (LevelName == "Level2" && GameData.IsSecondLevelOpened() == false)
+                return;
             SceneManager.LoadScene(LevelName);
         }
     }

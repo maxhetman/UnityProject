@@ -23,6 +23,13 @@ public class RabbitController : MonoBehaviour
 
     public const int MAX_HEALTH = 3;
 
+    //audio 
+    public AudioSource RabbitAudioSource;
+
+    public AudioClip RunAudioClip;
+    public AudioClip DieAudioClip;
+    public AudioClip JumpAudioClip;
+
     [HideInInspector] public int CurrentHealth;
 
     #endregion
@@ -44,6 +51,11 @@ public class RabbitController : MonoBehaviour
 
     void FixedUpdate()
     {
+
+        if (LevelController.Instance != null && LevelController.Instance.IsLevelFinished)
+        {
+            return;
+        }
 
         if (_isDead)
         {
@@ -75,6 +87,11 @@ public class RabbitController : MonoBehaviour
         else
         {
             _animator.SetBool("Run", false);
+            if (SoundManager.isSoundOn())
+            {
+                PlayRunSound();
+            }
+
         }
 
         Vector3 from = transform.position + Vector3.up * 0.3f;
@@ -84,12 +101,8 @@ public class RabbitController : MonoBehaviour
         RaycastHit2D hit = Physics2D.Linecast(from, to, layer_id);
         if (hit)
         {
-
-            Debug.Log("before");
-            Debug.Log(hit.transform.name + " is");
             if (hit.transform.GetComponent<MovingPlatform>() != null)
             {
-                Debug.Log("HERE");
                 transform.SetParent(hit.transform);
             }
             else
@@ -102,12 +115,16 @@ public class RabbitController : MonoBehaviour
         {
             _isGrounded = false;
         }
-        //Намалювати лінію (для розробника)
+
         Debug.DrawLine(from, to, Color.red);
 
         if (Input.GetButtonDown("Jump") && _isGrounded)
         {
             this._jumpActive = true;
+            if (SoundManager.isSoundOn())
+            {
+                PlayJumpSound();
+            }
         }
         if (this._jumpActive)
         {
@@ -141,7 +158,27 @@ public class RabbitController : MonoBehaviour
 
     #endregion
 
-        public void OnBomb()
+    private void PlayRunSound()
+    {
+        RabbitAudioSource.clip = RunAudioClip;
+        RabbitAudioSource.loop = true;
+        RabbitAudioSource.Play();
+    }
+
+    private void PlayJumpSound()
+    {
+        RabbitAudioSource.clip = JumpAudioClip;
+        RabbitAudioSource.loop = false;
+        RabbitAudioSource.Play();
+    }
+
+    private void PlayDieSound()
+    {
+        RabbitAudioSource.clip = DieAudioClip;
+        RabbitAudioSource.loop = false;
+        RabbitAudioSource.Play();
+    }
+    public void OnBomb()
         {
         if (isBig)
         {
@@ -156,16 +193,21 @@ public class RabbitController : MonoBehaviour
 
     private IEnumerator Respawn()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2f);
         LevelController.Instance.OnRabitDeath(this);
         _isDead = false;
         _animator.SetBool("Die", false);
     }
+
     public void Die()
     {
         if (_isDead)
             return;
         _animator.SetBool("Die", true);
+        if (SoundManager.isSoundOn())
+        {
+            PlayDieSound();
+        }
         _isDead = true;
         StartCoroutine(Respawn());
     }
@@ -173,6 +215,7 @@ public class RabbitController : MonoBehaviour
     public void RabbitGrow()
     {
         if (isBig)
+
         {
             return;
         }
